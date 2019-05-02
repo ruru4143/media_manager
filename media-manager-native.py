@@ -19,16 +19,16 @@ mpv_extensions = ["m4a", "3gp", "3g2", "mj2", "gif", "mp4"]
 
 for file in [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]:  # get files only
     print(file)
+    full_path_file = os.path.join(path, file)
     extension = file.split(".")[-1]
     if extension not in feh_extensions and extension not in mpv_extensions:
         continue
     elif extension in feh_extensions:
-        process = subprocess.Popen(f"feh --full-screen {full_path_file}".split())
+        subprocess.Popen(f"feh --full-screen {full_path_file}".split())
 
     elif extension in mpv_extensions:
-        process = subprocess.Popen(f"mpv --fullscreen {full_path_file}".split())
+        subprocess.Popen(f"mpv --fullscreen {full_path_file}".split())
 
-    full_path_file = os.path.join(path, file)
     print(full_path_file)
     operator = input("do you want to do n(othing), d(elete), r(ename): ")
 
