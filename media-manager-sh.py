@@ -2,10 +2,16 @@
 import sys
 import sh
 
-if len(sys.argv) != 1:
-    print("Please provide one path as parameter")
-
 path = sys.argv[1]
+
+if len(sys.argv) != 2:
+    print("Please provide one path as parameter (more than one parameter)")
+    sys.exit()
+try:
+    sh.test("-d", path)
+except sh.ErrorReturnCode_1:
+    print("Please provide one path as parameter (parameter is not a path)")
+    sys.exit()
 
 print("Welcome to the show, rename, delete media manager")
 

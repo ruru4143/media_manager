@@ -2,6 +2,15 @@
 
 path=$1
 
+test -d $path
+if [[ $? -ne 0 ]]; then # test if param is a path
+  echo "Please provide one path as parameter (parameter is not a path)"
+  exit
+elif [[ $# -ne 1 ]]; then
+  echo "Please provide one path as parameter (more than one parameter)"
+  exit
+fi
+
 echo "Welcome to the show, rename, delete media manager"
 
 image_extensions="jpeg png jpg pnm tiff bmp mov"
@@ -29,5 +38,4 @@ for file in $(find "$path" -maxdepth 1 -type f | egrep "(\.jpg)|(\.jpeg)|(\.png)
   else
     echo "do nothing"
   fi
-  
 done
